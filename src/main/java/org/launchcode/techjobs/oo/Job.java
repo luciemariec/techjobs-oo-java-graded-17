@@ -16,15 +16,16 @@ public class Job {
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields.
 
-    public Job(int id) {
-        this.id = id;
+    public Job() {
+        id = nextId;
+        nextId++;
     }
 
     //  The second constructor should also call the first in order to initialize
     //  the 'id' field.
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        this(nextId++);
+        this();
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -38,8 +39,9 @@ public class Job {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Job job)) return false;
-        return id == job.id && Objects.equals(name, job.name) && Objects.equals(employer, job.employer) && Objects.equals(location, job.location) && Objects.equals(positionType, job.positionType) && Objects.equals(coreCompetency, job.coreCompetency);
+        if (!(o instanceof Job)) return false;
+        Job job = (Job) o;
+        return id == job.id;
     }
 
     @Override
