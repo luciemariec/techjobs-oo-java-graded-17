@@ -1,4 +1,5 @@
 package org.launchcode.techjobs.oo;
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -35,4 +36,43 @@ public class JobTest {
         Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertFalse(job1.equals(job2));
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String expected = System.lineSeparator() +
+                "ID: " + job.getId() + System.lineSeparator() +
+                "Name: " + job.getName() + System.lineSeparator() +
+                "Employer: " + job.getEmployer().getValue() + System.lineSeparator() +
+                "Location: " + job.getLocation().getValue() + System.lineSeparator() +
+                "Position Type: " + job.getPositionType().getValue() + System.lineSeparator() +
+                "Core Competency: " + job.getCoreCompetency().getValue() + System.lineSeparator() +
+                System.lineSeparator();
+        assertEquals(expected, job.toString());
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String actual = job.toString();
+        assertTrue(actual.contains("ID: " + job.getId()));
+        assertTrue(actual.contains("Name: " + job.getName()));
+        assertTrue(actual.contains("Employer: " + job.getEmployer().getValue()));
+        assertTrue(actual.contains("Location: " + job.getLocation().getValue()));
+        assertTrue(actual.contains("Position Type: " + job.getPositionType().getValue()));
+        assertTrue(actual.contains("Core Competency: " + job.getCoreCompetency().getValue()));
+    }
+
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String actual = job.toString();
+        assertTrue(actual.contains("Name: Data not available"));
+        assertTrue(actual.contains("Employer: Data not available"));
+        assertTrue(actual.contains("Location: Data not available"));
+        assertTrue(actual.contains("Position Type: Data not available"));
+        assertTrue(actual.contains("Core Competency: Data not available"));
+    }
+
 }

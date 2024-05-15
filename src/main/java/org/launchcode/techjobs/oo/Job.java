@@ -32,6 +32,19 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
+    //For Task 5
+    @Override
+    public String toString() {
+        return System.lineSeparator() +
+                "ID: " + id + System.lineSeparator() +
+                "Name: " + (name.isBlank() ? "Data not available" : name) + System.lineSeparator() +
+                "Employer: " + (employer == null || employer.getValue().isBlank() ? "Data not available" : employer.getValue()) + System.lineSeparator() +
+                "Location: " + (location == null || location.getValue().isBlank() ? "Data not available" : location.getValue()) + System.lineSeparator() +
+                "Position Type: " + (positionType == null || positionType.getValue().isBlank() ? "Data not available" : positionType.getValue()) + System.lineSeparator() +
+                "Core Competency: " + (coreCompetency == null || coreCompetency.getValue().isBlank() ? "Data not available" : coreCompetency.getValue()) + System.lineSeparator() +
+                System.lineSeparator();
+    }
+
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
