@@ -35,15 +35,18 @@ public class Job {
     //For Task 5
     @Override
     public String toString() {
-        return System.lineSeparator() +
+        String result = System.lineSeparator() +
                 "ID: " + id + System.lineSeparator() +
-                "Name: " + (name.isBlank() ? "Data not available" : name) + System.lineSeparator() +
+                "Name: " + (name == null || name.isBlank() ? "Data not available" : name) + System.lineSeparator() +
                 "Employer: " + (employer == null || employer.getValue().isBlank() ? "Data not available" : employer.getValue()) + System.lineSeparator() +
                 "Location: " + (location == null || location.getValue().isBlank() ? "Data not available" : location.getValue()) + System.lineSeparator() +
                 "Position Type: " + (positionType == null || positionType.getValue().isBlank() ? "Data not available" : positionType.getValue()) + System.lineSeparator() +
-                "Core Competency: " + (coreCompetency == null || coreCompetency.getValue().isBlank() ? "Data not available" : coreCompetency.getValue()) + System.lineSeparator() +
+                "Core Competency: " + (coreCompetency == null || coreCompetency.getValue().isBlank() ? "Data not available" : coreCompetency.getValue()) +
                 System.lineSeparator();
+
+        return result;
     }
+
 
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
@@ -59,7 +62,7 @@ public class Job {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, employer, location, positionType, coreCompetency);
+        return Objects.hash(id);
     }
 
 
